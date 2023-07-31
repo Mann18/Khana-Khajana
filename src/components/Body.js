@@ -3,11 +3,11 @@ import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
 
 function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
+  const filteredData = restaurants.filter((restaurant) =>
     restaurant?.data?.data?.name?.toLowerCase().includes(searchText?.toLowerCase())
   );
 
-  return filterData;
+  return filteredData;
 }
 
 const Body = () => {
@@ -18,9 +18,8 @@ const Body = () => {
   const filteredRestaurants = filterData(searchText, restaurants);
 
  
-  // return restaurants?.length === 0 ? (
-  //   <Shimmer />
-  // ) :
+  if (filteredRestaurants?.length === 0)
+  return <h1>No Restraunt match your Filter!!</h1>;
   return  (
     <>
       <div className="container">
