@@ -2,26 +2,32 @@ import { restaurantList } from "../Constants";
 import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-function filterData(searchText, restaurants) {
-  const filteredData = restaurants.filter((restaurant) =>
-    restaurant?.data?.data?.name
-      ?.toLowerCase()
-      .includes(searchText?.toLowerCase())
-  );
-
-  return filteredData;
-}
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
-
-  // Use this hook to filter restaurants whenever searchText changes
   const filteredRestaurants = filterData(searchText, restaurants);
-
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return <h1>You're Offline!! Kindly check your connection....</h1>;
+  }
   if (filteredRestaurants?.length === 0)
-    return <h1>No Restraunt match your Filter!!</h1>;
+    return (
+      <div>
+        <input
+          type="search"
+          className="search-input"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <h1>No Restaurant match your Filter!!</h1>
+      </div>
+    );
   return (
     <>
       <div className="container">
