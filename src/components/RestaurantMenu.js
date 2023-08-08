@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_URL } from "../Constants";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
+import UserContext from "../utils/UserContext";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const restaurant = useRestaurant(resId);
+  const { user } = useContext(UserContext);
 
   return !restaurant ? (
     <Shimmer />
@@ -45,6 +48,7 @@ const RestaurantMenu = () => {
               ?.meta
           }
         </h3>
+        <h3>{user.name}</h3>
       </div>
     </div>
   );

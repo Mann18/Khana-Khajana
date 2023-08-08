@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { IMG_URL } from "../Constants";
 import Shimmer from "./Shimmer";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({
   name,
@@ -8,8 +9,11 @@ const RestaurantCard = ({
   cloudinaryImageId,
   lastMileTravelString,
   totalRatingsString,
+  
+  
 }) => {
   const [loading, setLoading] = useState(true);
+  const {user}= useContext(UserContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,6 +33,7 @@ const RestaurantCard = ({
           <h3 className="cuisines">{cuisines?.join(", ")}</h3>
           <h4 className="distance">{lastMileTravelString} Away</h4>
           <h4 className="ratings">{totalRatingsString}</h4>
+          <h4 className="ratings">{user.name}</h4>
         </div>
       )}
     </>

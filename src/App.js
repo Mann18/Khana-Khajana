@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,13 +8,21 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Manan",
+    email: "manan28112002@gmail.com",
+  });
+
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </>
   );
 };
