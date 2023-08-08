@@ -5,7 +5,7 @@ import UserContext from "../utils/UserContext";
 const Title = () => (
   <Link to="/">
     <img
-      className="logo"
+      className="h-20 py-2 px-3 m-3 "
       alt="logo"
       src="https://play-lh.googleusercontent.com/Fv6iUHtFoW-CnVw9jxKs0JLOzlRRGZnFiJNjAcLg1Qn2CU_PhczqLY5q_CV0XQELfaU"
     />
@@ -16,34 +16,39 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { user } = useContext(UserContext);
   return (
-    <div className="header">
+    <div className="flex h-[100px] bg-orange-100 justify-between shadow-xl ">
       <Title />
 
-      <div className="nav-items">
-        <ul>
-          <li>
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>About</Link>
-          </li>
-          <li>
-            <Link to={"/contact"}>Contact</Link>
-          </li>
-          <li>Cart</li>
-          <h4>{user.name}   </h4>
-          <li>
-            {loggedIn ? (
-              <button className="login" onClick={() => setLoggedIn(false)}>
-                Logout
-              </button>
-            ) : (
-              <button className="logout" onClick={() => setLoggedIn(true)}>
-                Login
-              </button>
-            )}
-          </li>
-        </ul>
+      <ul className="flex">
+        <li className="p-3 my-5 ">
+          <Link to={"/"}>Home</Link>
+        </li>
+        <li className="p-3 my-5 ">
+          <Link to={"/about"}>About</Link>
+        </li>
+        <li className="p-3 my-5 ">
+          <Link to={"/contact"}>Contact</Link>
+        </li>
+        <li className="p-3 my-5 ">Cart</li>
+      </ul>
+
+      <div className="my-5 p-3">
+        <span>{user.name} </span>
+        {loggedIn ? (
+          <button
+            className="bg-sky-500 hover:bg-sky-700 rounded p-1 text-white font-semibold"
+            onClick={() => setLoggedIn(false)}
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            className="bg-sky-500 hover:bg-sky-700 rounded p-1 text-white font-semibold"
+            onClick={() => setLoggedIn(true)}
+          >
+            Login
+          </button>
+        )}
       </div>
     </div>
   );

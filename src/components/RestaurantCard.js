@@ -9,11 +9,9 @@ const RestaurantCard = ({
   cloudinaryImageId,
   lastMileTravelString,
   totalRatingsString,
-  
-  
 }) => {
   const [loading, setLoading] = useState(true);
-  const {user}= useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,13 +25,17 @@ const RestaurantCard = ({
       {loading ? (
         <Shimmer />
       ) : (
-        <div className="card-container">
-          <img className="image" src={IMG_URL + cloudinaryImageId} alt={name} />
-          <h2 className="title">{name}</h2>
-          <h3 className="cuisines">{cuisines?.join(", ")}</h3>
-          <h4 className="distance">{lastMileTravelString} Away</h4>
-          <h4 className="ratings">{totalRatingsString}</h4>
-          <h4 className="ratings">{user.name}</h4>
+        <div className=" w-80 m-3 p-3 border-2 border-gray-400 shadow-lg bg-[#fffbeb] transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-100  duration-100 rounded-lg">
+          <img
+            className="rounded-lg"
+            src={IMG_URL + cloudinaryImageId}
+            alt={name}
+          />
+          <h2 className="p-3 text-center font-bold text-2xl">{name}</h2>
+          <h3 className="p-2 font-semibold ">{cuisines?.join(", ")}</h3>
+          <h4 className="p-2 font-semibold ">{lastMileTravelString} Away</h4>
+          <h4 className="p-2 font-semibold ">{totalRatingsString}</h4>
+          <h4 className="p-2 font-semibold ">{user.name}</h4>
         </div>
       )}
     </>

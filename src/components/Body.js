@@ -13,31 +13,38 @@ const Body = () => {
   const isOnline = useOnline();
   const { user, setUser } = useContext(UserContext);
   if (!isOnline) {
-    return <h1>You're Offline!! Kindly check your connection....</h1>;
+    return (
+      <h1 className="font-bold text-center text-3xl">
+        You're Offline!! Kindly check your connection....
+      </h1>
+    );
   }
   if (filteredRestaurants?.length === 0)
     return (
-      <div>
-        <input
-          type="search"
-          className="search-input"
-          placeholder="Search"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-
-        <h1>No Restaurant match your Filter!!</h1>
-      </div>
+      <>
+        <div className="my-2">
+          <input
+            type="search"
+            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+        </div>
+        <h1 className="text-strong font-black text-center text-3xl align-middle ">
+          No Restaurant match your Filter!!
+        </h1>
+      </>
     );
   return (
     <>
-      <div className="container">
-        <div className="search-container">
+      <div className="my-2">
+        <div className="">
           <input
             type="search"
-            className="search-input"
+            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400"
             placeholder="Search"
             value={searchText}
             onChange={(e) => {
@@ -49,7 +56,7 @@ const Body = () => {
             onChange={(e) => setUser({ name: e.target.value })}
           ></input> */}
         </div>
-        <div className="restaurant-list">
+        <div className="flex flex-wrap my-2 ml-12 ">
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
