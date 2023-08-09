@@ -29,6 +29,9 @@ const Header = () => {
         <li className="p-3 my-5 ">
           <Link to={"/contact"}>Contact</Link>
         </li>
+        <li className="p-3 my-5 ">
+          <Link to={"/instamart"}>Instamart</Link>
+        </li>
         <li className="p-3 my-5 ">Cart</li>
       </ul>
 
