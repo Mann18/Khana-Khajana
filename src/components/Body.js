@@ -15,6 +15,11 @@ const Body = () => {
   if (!isOnline) {
     return (
       <h1 className="font-bold text-center text-3xl">
+        {/* <img
+          src="https://cdn-icons-png.flaticon.com/512/7188/7188150.png"
+          className="w-80 h-auto m-auto"
+          alt="oops..."
+        /> */}
         You're Offline!! Kindly check your connection....
       </h1>
     );
@@ -25,8 +30,8 @@ const Body = () => {
         <div className="my-2">
           <input
             type="search"
-            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400"
-            placeholder="Search"
+            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400 w-80"
+            placeholder="Search..."
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -34,6 +39,11 @@ const Body = () => {
           />
         </div>
         <h1 className="text-strong font-black text-center text-3xl align-middle ">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/7188/7188150.png"
+            className="w-80 h-auto m-auto"
+            alt="oops..."
+          />
           No Restaurant match your Filter!!
         </h1>
       </>
@@ -44,8 +54,8 @@ const Body = () => {
         <div className="">
           <input
             type="search"
-            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400"
-            placeholder="Search"
+            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400 w-80 align-center"
+            placeholder="Search..."
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);

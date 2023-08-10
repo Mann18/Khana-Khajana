@@ -8,7 +8,8 @@ const RestaurantCard = ({
   cuisines,
   cloudinaryImageId,
   lastMileTravelString,
-  totalRatingsString,
+  costForTwoString,
+  avgRating,
 }) => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -25,7 +26,7 @@ const RestaurantCard = ({
       {loading ? (
         <Shimmer />
       ) : (
-        <div className=" w-80 m-3 p-3 border-2 border-gray-400 shadow-lg bg-[#fffbeb] transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-100  duration-100 rounded-lg">
+        <div className=" w-80 m-3 p-3 border-2 border-gray-400 shadow-xl bg-[#fffbeb] transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-100  duration-100 rounded-lg">
           <img
             className="rounded-lg"
             src={IMG_URL + cloudinaryImageId}
@@ -33,8 +34,18 @@ const RestaurantCard = ({
           />
           <h2 className="p-3 text-center font-bold text-2xl">{name}</h2>
           <h3 className="p-2 font-semibold ">{cuisines?.join(", ")}</h3>
-          <h4 className="p-2 font-semibold ">{lastMileTravelString} Away</h4>
-          <h4 className="p-2 font-semibold ">{totalRatingsString}</h4>
+
+          <div className=" flex justify-between">
+            {avgRating > 0 ? (
+              <span className="p-2 font-semibold bg-green-600 rounded-xl text-white">
+                {avgRating + " ★"}
+              </span>
+            ) : null}
+            <div className="p-2 font-semibold  ">{costForTwoString} </div>
+          </div>
+
+          <div className="p-2 font-semibold  ">{lastMileTravelString} </div>
+
           <h4 className="p-2 font-semibold ">{user.name}</h4>
         </div>
       )}
