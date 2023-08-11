@@ -4,11 +4,17 @@ import { IMG_URL } from "../Constants";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
 import UserContext from "../utils/UserContext";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const restaurant = useRestaurant(resId);
   const { user } = useContext(UserContext);
+  const dispatch = useDispatch();
+
+  const addFoodItem = (cuisine) => {
+    dispatch(addItem(cuisine));
+  };
 
   return !restaurant ? (
     <Shimmer />
@@ -52,9 +58,24 @@ const RestaurantMenu = () => {
         </h3>
         <h3 className="p-2 font-bold">
           Cuisines:
-          <span className="p-2 font-semibold">
-            {restaurant?.data?.data?.cuisines.join(", \n")}{" "}
-          </span>
+          {/* <span className="p-2 font-semibold">
+            {restaurant?.data?.data?.cuisines.join(".")}
+            
+
+          </span> */}
+          <ul data-testid="menu">
+            {restaurant?.data?.data.cuisines.map((cuisine) => (
+              <li>
+                {cuisine} -{" "}
+                <button
+                  className="p-1 bg-green-300 rounded-lg m-2"
+                  onClick={() => addFoodItem(cuisine)}
+                >
+                  Add
+                </button>
+              </li>
+            ))}
+          </ul>
         </h3>
         <h3 className="p-2 font-bold">
           Offers:
