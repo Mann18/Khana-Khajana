@@ -1,30 +1,22 @@
+import React, { Component } from "react";
 import Profile from "./ProfileClass";
-import { Component } from "react";
-
-// const About = () => {
-//   return (
-//     <div>
-//       <h1>About us</h1>;
-//       <Profile name="manan"/>
-//     </div>
-//   );
-// };
-// export default About;
 
 class About extends Component {
-  
   componentDidMount() {
     console.log("Parent ComponentDidMount");
   }
+
   render() {
     return (
-      <div>
-        {console.log("Parent Render")}
-        <h1>About Us</h1>
-        <Profile name="manan" />
+      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center px-4">
+        <h1 className="font-bold text-3xl md:text-4xl text-gray-800 mt-8 mb-4">
+          About Me
+        </h1>
+        <Profile name="Manan" />
       </div>
     );
   }
+
   constructor(props) {
     super(props);
     console.log("Parent Constructor");

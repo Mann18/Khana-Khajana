@@ -15,11 +15,6 @@ const Body = () => {
   if (!isOnline) {
     return (
       <h1 className="font-bold text-center text-3xl">
-        {/* <img
-          src="https://cdn-icons-png.flaticon.com/512/7188/7188150.png"
-          className="w-80 h-auto m-auto"
-          alt="oops..."
-        /> */}
         You're Offline!! Kindly check your connection....
       </h1>
     );
@@ -30,7 +25,7 @@ const Body = () => {
         <div className="my-2">
           <input
             type="search"
-            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400 w-80"
+            className="p-1 mx-2 md:mx-16 my-2 md:w-80 rounded-lg border-2 border-gray-400"
             placeholder="Search..."
             value={searchText}
             onChange={(e) => {
@@ -38,13 +33,13 @@ const Body = () => {
             }}
           />
         </div>
-        <h1 className="text-strong font-black text-center text-3xl align-middle ">
+        <h1 className="text-strong font-black text-center text-3xl">
           <img
             src="https://cdn-icons-png.flaticon.com/512/7188/7188150.png"
-            className="w-80 h-auto m-auto"
+            className="w-80 h-auto mx-auto"
             alt="oops..."
           />
-          No Restaurant match your Filter!!
+          No Restaurant matches your Filter!!
         </h1>
       </>
     );
@@ -54,24 +49,21 @@ const Body = () => {
         <div className="">
           <input
             type="search"
-            className="p-1 mx-16 m-2 rounded-lg border-2 border-gray-400 w-80 align-center"
+            className="p-1 mx-2 md:mx-16 my-2 md:w-80 rounded-lg border-2 border-gray-400"
             placeholder="Search..."
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
-          {/* <input
-            type="text"
-            onChange={(e) => setUser({ name: e.target.value })}
-          ></input> */}
         </div>
-        <div className="flex flex-wrap my-2 ml-12 ">
+        <div className="flex flex-wrap my-2 md:ml-12">
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
                 to={"/restaurant/" + restaurant?.data?.data?.id}
                 key={restaurant?.data?.data?.id}
+                className="w-full md:w-1/2 lg:w-1/3 p-2"
               >
                 <RestaurantCard {...restaurant?.data?.data} />
               </Link>

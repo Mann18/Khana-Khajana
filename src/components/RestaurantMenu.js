@@ -18,7 +18,7 @@ const RestaurantMenu = () => {
       image: IMG_URL + restaurant?.data?.data?.cloudinaryImageId,
       cuisine: cuisine,
 
-      price: restaurant?.data?.data?.costForTwo/100,
+      price: restaurant?.data?.data?.costForTwo / 100,
     };
     dispatch(addItem(item));
   };
@@ -86,7 +86,7 @@ const RestaurantMenu = () => {
           </ul>
         </h3>
 
-        <h3 className="p-2 font-bold">
+        <h3 className="p-2 font-bold bg-yellow-400">
           Offers:
           <div className="p-2 font-bold">
             {
