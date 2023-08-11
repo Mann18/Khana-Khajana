@@ -36,7 +36,12 @@ const Header = () => {
         <li className="p-3 my-5 ">
           <Link to={"/instamart"}>Instamart</Link>
         </li>
-        <Link to={"/cart"}><li className="p-3 my-5 ">🛒 {cartItems.length}</li></Link>
+        <Link to={"/cart"}>
+          <li className="p-3 my-5">
+            🛒
+            <sup className="font-bold text-lg">{cartItems.length}</sup>{" "}
+          </li>
+        </Link>
       </ul>
 
       <div className="my-5 p-3">

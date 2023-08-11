@@ -13,7 +13,14 @@ const RestaurantMenu = () => {
   const dispatch = useDispatch();
 
   const addFoodItem = (cuisine) => {
-    dispatch(addItem(cuisine));
+    const item = {
+      restaurantName: restaurant?.data?.data?.name,
+      image: IMG_URL + restaurant?.data?.data?.cloudinaryImageId,
+      cuisine: cuisine,
+
+      price: restaurant?.data?.data?.costForTwo/100,
+    };
+    dispatch(addItem(item));
   };
 
   return !restaurant ? (
@@ -65,7 +72,7 @@ const RestaurantMenu = () => {
           </span> */}
           <ul data-testid="menu">
             {restaurant?.data?.data.cuisines.map((cuisine) => (
-              <li>
+              <li key={cuisine}>
                 {cuisine} -{" "}
                 <button
                   className="p-1 bg-green-300 rounded-lg m-2"
@@ -73,10 +80,12 @@ const RestaurantMenu = () => {
                 >
                   Add
                 </button>
+                {console.log()}
               </li>
             ))}
           </ul>
         </h3>
+
         <h3 className="p-2 font-bold">
           Offers:
           <div className="p-2 font-bold">
