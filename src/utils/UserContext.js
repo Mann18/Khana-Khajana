@@ -5,6 +5,8 @@ const UserContext = createContext({
     name: "Dummy Name",
     email: "dummy@gmail.com",
   },
+  handleLogin: () => {},
+  handleLogout: () => {},
 });
 
 export default UserContext;

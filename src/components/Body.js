@@ -4,14 +4,11 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
-import UserContext from "../utils/UserContext";
-
 const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
   const filteredRestaurants = filterData(searchText, restaurants);
   const isOnline = useOnline();
-  const { user, setUser } = useContext(UserContext);
   if (!isOnline) {
     return (
       <h1 className="font-bold text-center text-3xl">

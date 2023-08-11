@@ -13,6 +13,8 @@ import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import Cart from "./components/Cart";
+import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
 const AppLayout = () => {
   const [user, setUser] = useState({
     name: "Manan",
@@ -58,6 +60,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       },
     ],
   },
