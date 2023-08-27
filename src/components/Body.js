@@ -8,6 +8,7 @@ const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
   const filteredRestaurants = filterData(searchText, restaurants);
+
   const isOnline = useOnline();
   if (!isOnline) {
     return (
@@ -41,6 +42,14 @@ const Body = () => {
       </>
     );
   return (
+
+
+ 
+  // return restaurants?.length === 0 ? (
+  //   <Shimmer />
+  // ) :
+  return  (
+
     <>
       <div className="my-2">
         <div className="">
