@@ -1,47 +1,78 @@
 import { restaurantList } from "../Constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
-
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.data?.name?.toLowerCase().includes(searchText?.toLowerCase())
-  );
-
-  return filterData;
-}
-
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
-
-  // Use this hook to filter restaurants whenever searchText changes
   const filteredRestaurants = filterData(searchText, restaurants);
 
- 
-  // return restaurants?.length === 0 ? (
-  //   <Shimmer />
-  // ) :
-  return  (
-    <>
-      <div className="container">
-        <div className="search-container">
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return (
+      <h1 className="font-bold text-center text-3xl">
+        You're Offline!! Kindly check your connection....
+      </h1>
+    );
+  }
+  if (filteredRestaurants?.length === 0)
+    return (
+      <>
+        <div className="my-2">
           <input
             type="search"
-            className="search-input"
-            placeholder="Search"
+            className="p-1 mx-2 md:mx-16 my-2 md:w-80 rounded-lg border-2 border-gray-400"
+            placeholder="Search..."
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
         </div>
-        <div className="restaurant-list">
+        <h1 className="text-strong font-black text-center text-3xl">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/7188/7188150.png"
+            className="w-80 h-auto mx-auto"
+            alt="oops..."
+          />
+          No Restaurant matches your Filter!!
+        </h1>
+      </>
+    );
+  return (
+
+
+ 
+  // return restaurants?.length === 0 ? (
+  //   <Shimmer />
+  // ) :
+  return  (
+
+    <>
+      <div className="my-2">
+        <div className="">
+          <input
+            type="search"
+            className="p-1 mx-2 md:mx-16 my-2 md:w-80 rounded-lg border-2 border-gray-400"
+            placeholder="Search..."
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+        </div>
+        <div className="flex flex-wrap my-2 md:ml-12">
           {filteredRestaurants.map((restaurant) => {
             return (
-              <RestaurantCard
-                {...restaurant?.data?.data}
+              <Link
+                to={"/restaurant/" + restaurant?.data?.data?.id}
                 key={restaurant?.data?.data?.id}
-              />
+                className="w-full md:w-1/2 lg:w-1/3 p-2"
+              >
+                <RestaurantCard {...restaurant?.data?.data} />
+              </Link>
             );
           })}
         </div>
