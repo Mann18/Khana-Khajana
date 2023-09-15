@@ -1,15 +1,24 @@
-import { restaurantList } from "../Constants";
+import { MENU_URL, restaurantList } from "../Constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
+
 const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [searchText, setSearchText] = useState("");
   const filteredRestaurants = filterData(searchText, restaurants);
 
   const isOnline = useOnline();
+  useEffect(() => {
+    getMenu();
+  }, []);
+  async function getMenu() {
+    const menu = await fetch(MENU_URL + "552518");
+    const json = await menu.json();
+    console.log(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+  }
   if (!isOnline) {
     return (
       <h1 className="font-bold text-center text-3xl">
@@ -41,14 +50,14 @@ const Body = () => {
         </h1>
       </>
     );
-  return (
+  
 
 
  
-  // return restaurants?.length === 0 ? (
-  //   <Shimmer />
-  // ) :
-  return  (
+  return restaurants?.length === 0 ? (
+    <Shimmer />
+  ) :
+   (
 
     <>
       <div className="my-2">
