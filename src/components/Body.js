@@ -50,14 +50,14 @@ const Body = () => {
         </h1>
       </>
     );
-  return (
+  
 
 
  
-  // return restaurants?.length === 0 ? (
-  //   <Shimmer />
-  // ) :
-  return  (
+  return restaurants?.length === 0 ? (
+    <Shimmer />
+  ) :
+   (
 
     <>
       <div className="my-2">
