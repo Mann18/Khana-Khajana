@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeItem } from "../utils/cartSlice";
-
+import EmptyCartImg from "../assets/cartEmpty.png";
+import CartImg from "../assets/cart.png";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -25,10 +26,7 @@ const Cart = () => {
           <p className="font-bold text-2xl md:text-3xl text-center">
             Your cart is empty.
           </p>
-          <img
-            className=" w-96 m-6 mx-auto"
-            src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png"
-          />
+          <img className=" w-96 m-6 mx-auto" src={EmptyCartImg} />
         </>
       ) : (
         <>
@@ -38,11 +36,11 @@ const Cart = () => {
           >
             Clear Cart
           </button>
-          <div className="flex flex-col md:flex-row md:flex-wrap justify-center">
+          <div className="flex flex-col  md:flex-row md:flex-wrap justify-center">
             {cartItems.map((item, index) => (
               <div
                 key={index}
-                className="bg-white p-4 border-2 shadow-xl rounded-lg m-2"
+                className="bg-white p-4 mx-3 border-2 shadow-xl rounded-lg m-2"
               >
                 <h3 className="font-bold text-lg mb-2 md:mb-3">
                   {item.restaurantName}
@@ -50,10 +48,10 @@ const Cart = () => {
                 <img
                   src={item.image}
                   className="w-auto h-20 rounded-lg mx-auto mb-2 md:mb-3"
-                  alt={item.cuisine}
+                  alt={item.item}
                 />
-                <p className="font-semibold text-center mb-2 md:mb-3 underline hover:font-bold">
-                  {item.cuisine}
+                <p className="font-semibold text-center mb-2 md:mb-3  hover:font-bold">
+                  {item.item}
                 </p>
                 <p className="font-semibold mb-2 md:mb-3">
                   Price:{" "}
@@ -70,10 +68,7 @@ const Cart = () => {
               </div>
             ))}
           </div>
-          <img
-            className=" w-14"
-            src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-donations-shopping-carts-forms-membershipworks-21.png"
-          />
+          <img className=" w-14" src={CartImg} />
         </>
       )}
     </div>

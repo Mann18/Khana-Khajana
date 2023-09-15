@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
-
+import Logo from "../assets/logo.png"
 const Title = () => (
   <Link to="/">
     <img
       className="h-20 py-2 px-3 m-3"
       alt="logo"
-      src="https://play-lh.googleusercontent.com/Fv6iUHtFoW-CnVw9jxKs0JLOzlRRGZnFiJNjAcLg1Qn2CU_PhczqLY5q_CV0XQELfaU"
+      src={Logo}
     />
   </Link>
 );
